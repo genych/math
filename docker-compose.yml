@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  php:
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    image: ghcr.io/genych/php82:latest
+    ports:
+      - "9000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: php-fpm
+    environment:
+      - XDEBUG_MODE=debug,profile
+
+  nginx:
+    build:
+      context: .docker
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - php
