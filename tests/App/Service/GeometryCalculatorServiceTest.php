@@ -6,6 +6,7 @@ use App\Model\Circle;
 use App\Model\Triangle;
 use PHPUnit\Framework\TestCase;
 
+// todo: same for diameters
 class GeometryCalculatorServiceTest extends TestCase
 {
     public function testSumAreas(): void
