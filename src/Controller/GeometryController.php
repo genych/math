@@ -53,6 +53,10 @@ class GeometryController extends AbstractController
             return $this->json($errors, Response::HTTP_BAD_REQUEST);
         }
 
-        return $this->json(new Circle((float)$radius));
+        try {
+            return $this->json(new Circle((float)$radius));
+        } catch (\ArithmeticError $e) {
+            return $this->json([$e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
     }
 }
