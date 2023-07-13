@@ -9,11 +9,18 @@ class Triangle
     public readonly float $area;
     public readonly float $perimeter;
 
+    /**
+     * @throws \ArithmeticError
+     */
     public function __construct(
         public readonly float $a,
         public readonly float $b,
         public readonly float $c,
     ) {
+        if ($a + $b <= $c || $a + $c <= $b || $b + $c <= $a) {
+            throw new \ArithmeticError('Impossible triangle');
+        }
+
         $this->perimeter = $this->calcPerimeter();
         $this->area = $this->calcArea();
     }

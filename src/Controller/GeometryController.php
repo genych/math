@@ -33,7 +33,11 @@ class GeometryController extends AbstractController
             return $this->json($errors, Response::HTTP_BAD_REQUEST);
         }
 
-        return $this->json(new Triangle((float)$a, (float)$b, (float)$c));
+        try {
+            return $this->json(new Triangle((float)$a, (float)$b, (float)$c));
+        } catch (\ArithmeticError $e) {
+            return $this->json([$e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     #[Route(path: "/circle/{radius}", methods: ["GET"])]
