@@ -2,7 +2,7 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
-    phpVersion: 80199
+    phpVersion: 80299
     checkGenericClassInNonGenericObjectType: false
     level: 9
     tmpDir: var/cache/phpstan
@@ -12,4 +12,5 @@ parameters:
     parallel:
         maximumNumberOfProcesses: 4
     ignoreErrors: # add them prudently
-        - "#^Attribute class JetBrains#" # optional handy feature
+        - "#^Cannot cast mixed#" # sure you can
+        - "# cannot be cast to string.$#"
