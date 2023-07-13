@@ -17,6 +17,7 @@ class GeometryController extends AbstractController
     #[Route(path: "/triangle/{a}/{b}/{c}", methods: ["GET"])]
     public function getTriangle(mixed $a, mixed $b, mixed $c, ValidatorInterface $validator): JsonResponse
     {
+        // overkill but let's assume validator is already here
         $constraint = new Assert\Collection([
             'a' => new Assert\Sequentially([new Assert\Type('numeric'), new Assert\Positive()]),
             'b' => new Assert\Sequentially([new Assert\Type('numeric'), new Assert\Positive()]),
@@ -36,6 +37,7 @@ class GeometryController extends AbstractController
         try {
             return $this->json(new Triangle((float)$a, (float)$b, (float)$c));
         } catch (\ArithmeticError $e) {
+            // array is just to keep same format (array of errors or some model)
             return $this->json([$e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
@@ -53,6 +55,7 @@ class GeometryController extends AbstractController
             return $this->json($errors, Response::HTTP_BAD_REQUEST);
         }
 
+        // kind of a mess but Circle is guaranteed to be valid
         try {
             return $this->json(new Circle((float)$radius));
         } catch (\ArithmeticError $e) {

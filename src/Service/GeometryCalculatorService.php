@@ -7,6 +7,7 @@ use App\Model\Triangle;
 
 class GeometryCalculatorService
 {
+    // todo: common IHaveArea interface maybe
     public function sumAreas(Triangle|Circle ...$shapes): float
     {
         return array_reduce(

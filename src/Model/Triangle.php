@@ -4,7 +4,6 @@ namespace App\Model;
 
 class Triangle
 {
-
     public readonly string $type;
     public readonly float $area;
     public readonly float $perimeter;
@@ -34,6 +33,7 @@ class Triangle
     private function calcArea(): float
     {
         $s = $this->perimeter / 2;
+        // Heron's formula
         return sqrt($s * ($s - $this->a) * ($s - $this->b) * ($s - $this->c));
     }
 }
