@@ -4,7 +4,7 @@ namespace App\Model;
 
 class Circle
 {
-    public static string $name = 'circle';
+    public readonly string $type;
     public readonly float $area;
     public readonly float $circumference;
 
@@ -19,6 +19,7 @@ class Circle
 
         $this->area = $this->calcArea();
         $this->circumference = $this->calcCircumference();
+        $this->type = 'circle';
     }
 
     private function calcCircumference(): float

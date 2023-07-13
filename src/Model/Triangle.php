@@ -5,7 +5,7 @@ namespace App\Model;
 class Triangle
 {
 
-    public static string $name = 'triangle';
+    public readonly string $type;
     public readonly float $area;
     public readonly float $perimeter;
 
@@ -23,6 +23,7 @@ class Triangle
 
         $this->perimeter = $this->calcPerimeter();
         $this->area = $this->calcArea();
+        $this->type = 'triangle';
     }
 
     private function calcPerimeter(): float
